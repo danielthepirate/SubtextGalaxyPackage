@@ -11,18 +11,23 @@ intellisense	    	http://sublimecodeintel.github.io/SublimeCodeIntel
 
 
 
-Galaxy.JSON-tmLanuage
-  Pirates modifications from C#.JSON-tmLanguage
+Galaxy.JSON-tmLanuage contains pirate's modifications from C#.JSON-tmLanguage
   ISSUES:
     
-    Where do these go:
-	    include
-	    native
-	    typedef	
+	Where do these go:
+		include
+	    	native
+	    	typedef	
    
-    Unmodified/Unnecessary line blocks:
-      184 to 204
-      209 to 212
-      217 to 220
-      221 to 224
-      265 to 273
+	Unmodified/Unnecessary line blocks:
+      		184 to 204
+      		209 to 212
+      		217 to 220
+      		221 to 224
+      		265 to 273
+	
+	Missing:
+		constants
+		operators?
+		natives
+		native library funcs

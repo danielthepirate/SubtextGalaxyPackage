@@ -1,0 +1,281 @@
+{
+    "foldingStartMarker": "^\\s*/\\*|^(?![^{]*?//|[^{]*?/\\*(?!.*?\\*/.*?\\{)).*?\\{\\s*($|//|/\\*(?!.*?\\*/.*\\S))", 
+    "name": "Galaxy", 
+    "repository": {
+        "singleQuotedString": {
+            "begin": "'", 
+            "end": "'", 
+            "name": "string.quoted.single.xml", 
+            "endCaptures": {
+                "0": {
+                    "name": "punctuation.definition.string.end.source.cs"
+                }
+            }, 
+            "beginCaptures": {
+                "0": {
+                    "name": "punctuation.definition.string.begin.source.cs"
+                }
+            }, 
+            "patterns": [
+                {
+                    "name": "constant.character.escape.source.cs", 
+                    "match": "\\\\."
+                }
+            ]
+        }, 
+        "doubleQuotedStringLiteral": {
+            "captures": {
+                "0": {
+                    "name": "punctuation.definition.string.begin.source.cs"
+                }
+            }, 
+            "name": "string.quoted.double.literal.source.cs", 
+            "match": "@\"([^\"]|\"\")*\""
+        }, 
+        "comments": {
+            "patterns": [
+                {
+                    "captures": {
+                        "0": {
+                            "name": "punctuation.definition.comment.source.cs"
+                        }
+                    }, 
+                    "begin": "/\\*", 
+                    "end": "\\*/\\n?", 
+                    "name": "comment.block.source.cs"
+                }, 
+                {
+                    "captures": {
+                        "1": {
+                            "name": "punctuation.definition.comment.source.cs"
+                        }
+                    }, 
+                    "name": "comment.line.double-slash.source.cs", 
+                    "match": "(//).*$\\n?"
+                }
+            ]
+        }, 
+        "statementRemainder": {
+            "patterns": [
+                {
+                    "patterns": [
+                        {
+                            "include": "#builtinTypes"
+                        }
+                    ], 
+                    "begin": "\\(", 
+                    "end": "(?=\\))", 
+                    "name": "meta.definition.param-list.source.cs"
+                }
+            ]
+        }, 
+        "classInheritance": {
+            "patterns": [
+                {
+                    "patterns": [
+                        {
+                            "captures": {
+                                "1": {
+                                    "name": "storage.type.source.cs"
+                                }
+                            }, 
+                            "match": "\\s*,?([A-Za-z_]\\w*)\\b"
+                        }
+                    ], 
+                    "begin": ":", 
+                    "end": "(?={)"
+                }
+            ]
+        }, 
+        "doubleQuotedString": {
+            "begin": "\"", 
+            "end": "\"", 
+            "name": "string.quoted.double.source.cs", 
+            "endCaptures": {
+                "0": {
+                    "name": "punctuation.definition.string.end.source.cs"
+                }
+            }, 
+            "beginCaptures": {
+                "0": {
+                    "name": "punctuation.definition.string.begin.source.cs"
+                }
+            }, 
+            "patterns": [
+                {
+                    "name": "constant.character.escape.source.cs", 
+                    "match": "\\\\."
+                }
+            ]
+        }, 
+        "builtinTypes": {
+            "patterns": [
+                {
+                    "name": "storage.type.source.cs", 
+                    "match": "\\b(abilcmd|actor|actorscope|aifilter|animtarget|bank|bool|byte|camerainfo|char|class|color|doodad|fixed|handle|int|marker|order|playergroup|point|region|revealer|sound|soundlink|string|text|timer|transmissionsource|trigger|unit|unitfilter|unitgroup|unitref|void|wave|waveinfo|wavetarget)\\b"
+                }
+            ]
+        }
+    }, 
+    "scopeName": "source.cs", 
+    "patterns": [
+        {
+            "captures": {
+                "0": {
+                    "name": "punctuation.definition.comment.source.cs"
+                }
+            }, 
+            "begin": "///", 
+            "end": "$\\n?", 
+            "name": "comment.block.documentation.source.cs", 
+            "patterns": [
+                {
+                    "captures": {
+                        "1": {
+                            "name": "punctuation.definition.tag.source.cs"
+                        }, 
+                        "3": {
+                            "name": "entity.name.tag.source.cs"
+                        }, 
+                        "2": {
+                            "name": "entity.name.tag.namespace.source.cs"
+                        }, 
+                        "5": {
+                            "name": "entity.name.tag.localname.source.cs"
+                        }, 
+                        "4": {
+                            "name": "punctuation.separator.namespace.source.cs"
+                        }
+                    }, 
+                    "begin": "(</?)(?:([-_a-zA-Z0-9]+)((:)))?([-_a-zA-Z0-9:]+)", 
+                    "end": "(/?>)", 
+                    "name": "keyword.other.documentation.source.cs", 
+                    "patterns": [
+                        {
+                            "captures": {
+                                "1": {
+                                    "name": "entity.other.attribute-name.namespace.source.cs"
+                                }, 
+                                "3": {
+                                    "name": "punctuation.separator.namespace.source.cs"
+                                }, 
+                                "2": {
+                                    "name": "entity.other.attribute-name.source.cs"
+                                }, 
+                                "4": {
+                                    "name": "entity.other.attribute-name.localname.source.cs"
+                                }
+                            }, 
+                            "match": " (?:([-_a-zA-Z0-9]+)((:)))?([_a-zA-Z-]+)="
+                        }, 
+                        {
+                            "include": "#doubleQuotedString"
+                        }, 
+                        {
+                            "include": "#singleQuotedString"
+                        }
+                    ]
+                }
+            ]
+        }, 
+        {
+            "include": "#comments"
+        }, 
+        {
+            "captures": {
+                "1": {
+                    "name": "storage.modifier.source.cs"
+                }, 
+                "3": {
+                    "name": "entity.name.type.class.source.cs"
+                }, 
+                "2": {
+                    "name": "storage.type.source.cs"
+                }
+            }, 
+            "begin": "(?x)^\\s*\n((?:\\b(?:new|public|protected|internal|private|abstract|sealed|static)\\b\\s)*)\n(class)\\s+\n([A-Za-z_]\\w+)\\b", 
+            "end": "{", 
+            "name": "meta.definition.class.source.cs", 
+            "patterns": [
+                {
+                    "include": "#classInheritance"
+                }
+            ]
+        }, 
+        {
+            "name": "constant.language.source.cs", 
+            "match": "\\b(true|false|null)\\b"
+        }, 
+        {
+            "name": "constant.numeric.source.cs", 
+            "match": "\\b((0(x|X)[0-9a-fA-F]*)|(([0-9]+\\.?[0-9]*)|(\\.[0-9]+))((e|E)(\\+|-)?[0-9]+)?)(L|l|UL|ul|u|U|F|f|ll|LL|ull|ULL)?\\b"
+        }, 
+        {
+            "name": "keyword.control.source.cs", 
+            "match": "\\b(if|else|while|for|do|return|continue|break)\\b"
+        }, 
+        {
+            "name": "keyword.operator.source.cs", 
+            "match": "\\b(new|is|checked|unchecked|typeof|sizeof|override|in|out|ref|readonly|params|stackalloc|as)\\b"
+        }, 
+        {
+            "name": "keyword.other.source.cs", 
+            "match": "\\b(event|delegate|explicit|implicit|in|set|get)\\b"
+        }, 
+        {
+            "name": "storage.modifier.source.cs", 
+            "match": "\\b(static|const)\\b"
+        }, 
+        {
+            "include": "#doubleQuotedStringLiteral"
+        }, 
+        {
+            "include": "#doubleQuotedString"
+        }, 
+        {
+            "include": "#singleQuotedString"
+        }, 
+        {
+            "captures": {
+                "1": {
+                    "name": "keyword.other.using.source.cs"
+                }, 
+                "2": {
+                    "name": "entity.name.type.package.source.cs"
+                }
+            }, 
+            "name": "meta.keyword.using.source.cs", 
+            "match": "^\\s*(using)\\s+([^ ;]*);"
+        }, 
+        {
+            "include": "#builtinTypes"
+        }, 
+        {
+            "captures": {
+                "1": {
+                    "name": "keyword.other.namespace.source.cs"
+                }, 
+                "2": {
+                    "name": "entity.name.type.namespace.source.cs"
+                }
+            }, 
+            "name": "meta.keyword.namespace.source.cs", 
+            "match": "^\\s*(namespace)\\s+([^ ]+)(?:\\s*{)?$"
+        }, 
+        {
+            "captures": {
+                "2": {
+                    "name": "keyword.control.import.source.cs"
+                }
+            }, 
+            "name": "meta.preprocessor.source.cs", 
+            "match": "^(#)\\s*(if|else|elif|endif|define|undef|warning|error|line|region|endregion)\\b"
+        }
+    ], 
+    "foldingStopMarker": "^\\s*\\*/|^\\s*\\}", 
+    "fileTypes": [
+        "cs"
+    ], 
+    "keyEquivalent": "^~C", 
+    "uuid": "1BA75B32-707C-11D9-A928-000D93589AF6"
+}

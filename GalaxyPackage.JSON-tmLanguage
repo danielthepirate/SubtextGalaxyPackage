@@ -1,0 +1,10 @@
+// [PackageDev] target_format: plist, ext: tmLanguage
+    { "name": "Galaxy",
+  "scopeName": "source.galaxy",
+  "fileTypes": ["galaxy"],
+  "uuid": "52874f42-1f37-4822-babe-943ead7fc2d3",
+
+  "patterns": [
+    
+  ]
+}
